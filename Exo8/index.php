@@ -30,25 +30,33 @@ if(empty($_GET['gender']) && empty($_GET['firstName']) && empty($_GET['lastName'
      $lastName = $_GET['lastName'];
      $file = $_GET['file'];
      $fileType = strtolower(pathinfo($file,PATHINFO_EXTENSION));
-    $fileNoExt = pathinfo($file , PATHINFO_FILENAME);
-     if($gender == "Homme"){
-         echo "Bonjour ". $firstName ." ". $lastName ." et vous etes un ".$gender;
+     $file = pathinfo($file , PATHINFO_FILENAME);
+
+    if ($fileType != 'pdf'){
+        echo "<br/> Veuillez mettre un pdf <br/>";
+    ?>
+    <a href="http://partie7.localhost/Exo8/index.php">Revenir au formulaire</a>
+    <?php
+
+} else if ($gender == "Homme"){
+
+         echo "Bonjour ". $firstName ." ". $lastName ." et vous etes un ".$gender ." et votre fichier" .$file. " est un pdf !"; 
+
      } else if($gender == "Femme") {
-        echo "Bonjour ". $firstName ." ". $lastName ." et vous etes une ".$gender;
+
+        echo "Bonjour ". $firstName ." ". $lastName ." et vous etes une ".$gender ." et votre fichier" .$file. " est un pdf !";
+
      } else if($gender == "autre") {
-        echo "Bonjour ". $firstName ." ". $lastName ." vous etes de type ".$gender;
+
+        echo "Bonjour ". $firstName ." ". $lastName ." vous etes de type ".$gender ." et votre fichier" .$file. " est un pdf !";
+
       } else {
+
             echo "vous n'avez pas mis de sexe ";
         }
+    }
 
-        if($fileType == 'pdf'){
-            echo "<br/>  Votre fichier ".$fileNoExt." est un pdf !";
-        }else{
-            echo "<br/> Veuillez mettre un pdf <br/>";
-    ?>
-<a href="http://partie7.localhost/Exo8/index.php">Revenir au formulaire</a>
-<?php
-        }
-     }
+     
+      
     
  ?>
